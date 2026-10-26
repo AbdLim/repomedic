@@ -59,11 +59,41 @@ Each component has independent setup instructions:
 
 The AI service requires Nebius credentials and a supported sandbox execution environment.
 
-## Security and Limitations
+## Current MVP Scope & Limitations
 
-RepoMedic currently focuses on supported public Python repositories. Repair results are proposals for developer review, and successful tests do not guarantee correctness in every scenario.
+RepoMedic is currently an MVP focused on **Python-based GitHub repositories**, particularly FastAPI applications using pytest.
 
-Execution environments have resource and isolation restrictions. Do not supply production credentials as test environment variables.
+### Supported
+
+- **Public GitHub repositories** with accessible issues and source code.
+- **Python 3.12 projects** using `pyproject.toml` and `uv.lock` for dependency management.
+- **pytest-based test suites** for reproducing bugs and validating proposed fixes.
+- **User-provided environment variables** for configuring test execution.
+- **Issue classification**, including bugs, feature requests, usage mismatches, and unclear reports.
+- **AI-generated repair suggestions and patches**, with sandbox verification for supported reproducible bugs.
+
+### Current Limitations
+
+- **Language support:** JavaScript, TypeScript, Go, Rust, Java, and other languages are not yet supported for automated repair verification.
+- **Dependency management:** Projects using only `requirements.txt`, Poetry, or Pipenv are not currently supported by the environment builder.
+- **External services:** Repositories requiring running databases, Redis, message queues, or third-party APIs may need additional setup or mocks. Supplying environment variables does not automatically provision these services.
+- **Complex repositories:** Monorepos, multi-service architectures, and projects requiring custom build steps may not execute successfully.
+- **Private repositories:** GitHub authentication and private repository access are not supported in the current MVP.
+- **Patch scope:** The current repair engine primarily supports targeted changes to a single Python source file.
+- **Verification:** A passing regression test and existing test suite provide evidence of correctness, but do not guarantee that a patch resolves every edge case.
+- **GitHub integration:** RepoMedic does not automatically commit changes, push branches, or create pull requests. All proposed changes are presented for developer review.
+
+### Execution & Security
+
+RepoMedic runs supported tests in disposable sandbox environments with execution timeouts and resource restrictions. Local development uses Docker, while the deployed AI service uses Railway Sandboxes.
+
+User-provided environment variables are passed into the test environment. **Only disposable test credentials should be provided**, as executed repository code can access them.
+
+RepoMedic is an experimental developer tool. Generated changes should be reviewed before being applied to production repositories.
+
+### Future Improvements
+
+Planned areas of improvement include support for additional languages and package managers, more complex repository environments, multi-file repairs, private GitHub repositories, and optional pull-request creation.
 
 ## License
 
