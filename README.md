@@ -8,6 +8,8 @@ Not every GitHub issue is a bug. RepoMedic can also recognize feature requests, 
 
 Built for the **Nebius x NVIDIA Global AI Hackathon 2026**.
 
+Current support: Public Python 3.12 GitHub repositories using `uv` and `pytest`. Other project types may be analyzed for suggestions, but automated patch verification is currently limited to supported Python environments.
+
 ## How it works
 
 1. Submit a public GitHub issue URL.
