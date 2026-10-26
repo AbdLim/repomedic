@@ -1,0 +1,28 @@
+# Environment variables and credentials
+.env
+.env.*
+!.env.example
+!.env.sample
+
+# Node.js / Next.js
+node_modules/
+.next/
+dist/
+build/
+coverage/
+
+# Python
+.venv/
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.pyc
+
+# Local tooling
+.DS_Store
+.vscode/
+.idea/
+
+# Logs
+*.log

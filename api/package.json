@@ -1,0 +1,44 @@
+{
+    "name": "nodejs-starter-template",
+    "version": "1.0.0",
+    "description": "Production-ready Node.js, Express, Drizzle ORM and TypeScript starter template",
+    "packageManager": "yarn@4.18.1",
+    "main": "dist/index.js",
+    "scripts": {
+        "dev": "tsx watch --include .env src/index.ts",
+        "dev:worker": "tsx watch --include .env src/workers/repair.worker.ts",
+        "build": "tsc -p tsconfig.json",
+        "start": "node dist/index.js",
+        "start:worker": "node dist/workers/repair.worker.js",
+        "typecheck": "tsc --noEmit",
+        "test": "vitest run",
+        "test:watch": "vitest",
+        "db:generate": "drizzle-kit generate",
+        "db:migrate": "tsx src/database/migrate.ts",
+        "db:migrate:prod": "node dist/database/migrate.js",
+        "db:studio": "drizzle-kit studio"
+    },
+    "author": "Abdulalim Ladan",
+    "license": "ISC",
+    "dependencies": {
+        "cors": "^2.8.5",
+        "dotenv": "^16.6.1",
+        "drizzle-orm": "^0.44.5",
+        "express": "^5.1.0",
+        "helmet": "^8.1.0",
+        "pino": "^9.9.0",
+        "postgres": "^3.4.7",
+        "zod": "^4.1.12"
+    },
+    "devDependencies": {
+        "@types/cors": "^2.8.19",
+        "@types/express": "^5.0.3",
+        "@types/node": "^26.6.5",
+        "@types/supertest": "^6.0.3",
+        "drizzle-kit": "^0.31.5",
+        "supertest": "^7.1.4",
+        "tsx": "^4.20.6",
+        "typescript": "^5.9.3",
+        "vitest": "^3.2.4"
+    }
+}
